@@ -165,6 +165,11 @@ func (server *Server) RegisterTask(name string, taskFunc interface{}) error {
 // IsTaskRegistered returns true if the task name is registered with this broker
 func (server *Server) IsTaskRegistered(name string) bool {
 	_, ok := server.registeredTasks.Load(name)
+	if ok {
+		log.INFO.Printf("- [server/IsTaskRegistered] returning: for ", name, " ok : true")
+	} else {
+		log.INFO.Printf("- [server/IsTaskRegistered] returning: for ", name, " ok : false")
+	}
 	return ok
 }
 

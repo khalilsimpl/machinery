@@ -11,7 +11,7 @@ import (
 	"time"
 
 	"github.com/opentracing/opentracing-go"
-	
+
 	"github.com/RichardKnop/machinery/v1/backends/amqp"
 	"github.com/RichardKnop/machinery/v1/brokers/errs"
 	"github.com/RichardKnop/machinery/v1/log"
@@ -55,7 +55,7 @@ func (worker *Worker) LaunchAsync(errorsChan chan<- error) {
 	broker := worker.server.GetBroker()
 
 	// Log some useful information about worker configuration
-	log.INFO.Printf("Launching a worker with the following settings:")
+	log.INFO.Printf("Launching a worker with the following settings: configure")
 	log.INFO.Printf("- Broker: %s", RedactURL(cnf.Broker))
 	if worker.Queue == "" {
 		log.INFO.Printf("- DefaultQueue: %s", cnf.DefaultQueue)

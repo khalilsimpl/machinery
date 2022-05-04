@@ -336,10 +336,13 @@ func (b *Broker) consumeOne(delivery []byte, taskProcessor iface.TaskProcessor) 
 	// If the task is not registered, we requeue it,
 	// there might be different workers for processing specific tasks
 	if !b.IsTaskRegistered(signature.Name) {
+		log.INFO.Printf("Task not registered with this worker ", signature.Name)
 		if signature.IgnoreWhenTaskNotRegistered {
+			log.INFO.Printf("ignore when task not registered = true ", signature.Name)
 			return nil
 		}
 		log.INFO.Printf("Task not registered with this worker. Requeuing message: %s", delivery)
+		log.INFO.Printf("ignore when task not registered = false ", signature.Name)
 		b.requeueMessage(delivery, taskProcessor)
 		return nil
 	}
